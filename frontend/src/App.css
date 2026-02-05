@@ -1,0 +1,110 @@
+/* Основные стили */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: white;
+  margin-top: 5vw; /* Отступ сверху, чтобы шапка не перекрывала контент */
+}
+
+/* Шапка */
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 2vw;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  border-bottom: 1px solid #ccc; /* Добавим границу для отделения */
+}
+
+.logo {
+  font-size: 2rem;
+}
+
+.burger-menu {
+  font-size: 2rem;
+}
+
+/* Слайд */
+.slide {
+  display: flex;
+  height: 100vh;
+  padding: 5vw;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.slide-text {
+  width: 50%;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1rem;
+}
+
+.slide-circles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  position: absolute;
+  right: 10vw;
+}
+
+.left-circles,
+.right-circles {
+  margin: 1vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.orange {
+  background-color: orange;
+  margin-right: 15vw;
+}
+
+.yellow {
+  background-color: yellow;
+    margin-left: 15vw;
+}
+
+.pink {
+  background-color: pink;
+    margin-right: 15vw;
+}
+
+.purple {
+  background-color: purple;
+    margin-left: 15vw;
+}
+
+.left-circles .circle:first-child {
+  margin-bottom: 2vh;
+}
+
+.right-circles .circle:first-child {
+  margin-bottom: 2vh;
+}
