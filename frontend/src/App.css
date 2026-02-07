@@ -1,4 +1,3 @@
-/* Основные стили */
 * {
   margin: 0;
   padding: 0;
@@ -7,22 +6,30 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: white;
-  margin-top: 5vw; /* Отступ сверху, чтобы шапка не перекрывала контент */
+  background-color: #f8f8f8;
+  margin-top: 5vw;
+  overflow: hidden;
 }
 
-/* Шапка */
+.app {
+  overflow: hidden;
+  height: 100vh;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 2vw;
-  background-color: white;
+  padding-left: 5vw;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  padding-right: 5vw;
+  background-color: #f5f5f5;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 10;
-  border-bottom: 1px solid #ccc; /* Добавим границу для отделения */
+  border-bottom: 1px solid #ddd;
 }
 
 .logo {
@@ -31,9 +38,9 @@ body {
 
 .burger-menu {
   font-size: 2rem;
+  cursor: pointer;
 }
 
-/* Слайд */
 .slide {
   display: flex;
   height: 100vh;
@@ -41,6 +48,7 @@ body {
   justify-content: space-between;
   align-items: center;
   position: relative;
+  background-color: #fafafa;
 }
 
 .slide-text {
@@ -50,10 +58,23 @@ body {
 h1 {
   font-size: 2rem;
   margin-bottom: 1rem;
+  color: #333;
 }
 
-p {
-  font-size: 1rem;
+.video-container {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.background-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
 }
 
 .slide-circles {
@@ -72,33 +93,53 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
 }
 
 .circle {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.circle::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+  opacity: 0.6;
   border-radius: 50%;
 }
 
+.circle:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
 .orange {
-  background-color: orange;
+  background: linear-gradient(135deg, #ff8c00, #ffa500);
   margin-right: 15vw;
 }
 
 .yellow {
-  background-color: yellow;
-    margin-left: 15vw;
+  background: linear-gradient(135deg, #ffd700, #ffff00);
+  margin-left: 15vw;
 }
 
 .pink {
-  background-color: pink;
-    margin-right: 15vw;
+  background: linear-gradient(135deg, #ff69b4, #ffb6c1);
+  margin-right: 15vw;
 }
 
 .purple {
-  background-color: purple;
-    margin-left: 15vw;
+  background: linear-gradient(135deg, #9370db, #8a2be2);
+  margin-left: 15vw;
 }
 
 .left-circles .circle:first-child {
@@ -107,4 +148,156 @@ p {
 
 .right-circles .circle:first-child {
   margin-bottom: 2vh;
+}
+
+.progress-container {
+  position: fixed;
+  right: 3vw;
+  top: 20vh;
+  height: 60vh;
+  width: 3px;
+  background: rgba(0,0,0,0.1);
+  border-radius: 2px;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.progress-bar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, #9370db, #ff8c00);
+  transition: height 0.1s ease;
+  border-radius: 2px;
+}
+.moving-circle {
+  position: relative;
+}
+
+.moving-circle[style*="--direction: right"] {
+  transform: translateX(calc(var(--move-distance) * 1));
+}
+
+.moving-circle[style*="--direction: left"] {
+  transform: translateX(calc(var(--move-distance) * -1));
+}
+
+
+.moving-circle.orange {
+  margin-right: 15vw !important;
+}
+
+.moving-circle.yellow {
+  margin-left: 15vw !important;
+}
+
+.moving-circle.pink {
+  margin-right: 15vw !important;
+}
+
+.moving-circle.purple {
+  margin-left: 15vw !important;
+}
+.slide-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 5vw;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fafafa;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+
+.slide.next.slide-enter {
+  animation: slideInFromBottom 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.slide.next.slide-exit {
+  animation: slideOutToTop 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.slide.prev.slide-enter {
+  animation: slideInFromTop 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.slide.prev.slide-exit {
+  animation: slideOutToBottom 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToTop {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0.5;
+  }
+}
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToBottom {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0.5;
+  }
+}
+
+.slide-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.slide-text {
+  width: 50%;
+}
+
+.slide-circles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  position: absolute;
+  right: 10vw;
 }

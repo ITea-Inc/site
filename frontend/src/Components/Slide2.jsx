@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Slide1 = ({ scrollProgress = 0, slideDirection = 'next', isTransitioning = false }) => {
+const Slide2 = ({ scrollProgress = 0, slideDirection = 'next', isTransitioning = false }) => {
   const moveDistance = (scrollProgress / 100) * 7.5;
 
   return (
     <section className={`slide ${slideDirection} ${isTransitioning ? 'slide-exit' : 'slide-enter'}`}>
       <div className="slide-content">
         <div className="slide-text">
-          <h1>Интеграция IT в бизнес любого масштаба и любой сложности</h1>
+          <h1>Слайд 2: Профессиональные IT-решения</h1>
           <div className="video-container">
             <video 
               autoPlay 
@@ -60,4 +60,4 @@ const Slide1 = ({ scrollProgress = 0, slideDirection = 'next', isTransitioning =
   );
 };
 
-export default Slide1;
+export default Slide2;
