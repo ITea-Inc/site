@@ -1,5 +1,6 @@
 package com.example.sitebackend.service;
 
+import com.example.sitebackend.config.MailProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,9 +16,7 @@ import org.springframework.stereotype.Service;
 public class EmailServiceImpl implements EmailService {
 
     private final JavaMailSender mailSender;
-
-    @Value("${spring.mail.username}")
-    private String myEmail;
+    private final MailProperties mailProperties;
 
     @Override
     @Async
@@ -25,8 +24,8 @@ public class EmailServiceImpl implements EmailService {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
 
-            message.setFrom(myEmail);
-            message.setTo(myEmail);
+            message.setFrom(mailProperties.getUsername());
+            message.setTo(mailProperties.getUsername());
             message.setSubject("Заявка от: " + senderEmail);
             message.setText("Почта клиента: " + senderEmail + "\n\nСообщение:\n" + body);
             message.setReplyTo(senderEmail);
