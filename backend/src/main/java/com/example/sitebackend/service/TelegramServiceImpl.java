@@ -17,7 +17,7 @@ import java.nio.charset.StandardCharsets;
 public class TelegramServiceImpl implements TelegramService {
 
     private final TelegramProperties telegramProperties;
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate;
 
     @Override
     @Async
