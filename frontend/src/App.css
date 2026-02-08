@@ -5,10 +5,16 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+ font-family: Arial, sans-serif;
   background-color: #f8f8f8;
   margin-top: 5vw;
   overflow: hidden;
+  background-image: url('../public/images/background.jpeg'); /* Верный синтаксис для background-image */
+  background-size: cover; /* Фон заполняет весь экран */
+  background-position: center; /* Центрирует фон */
+  background-repeat: no-repeat; /* Убирает повторение фона */
+  height: 100vh; /* Занимает всю высоту экрана */
+  position: relative; /* Позиционирование относительно родительского элемента */
 }
 
 .app {
@@ -20,16 +26,16 @@ body {
   display: flex;
   justify-content: space-between;
   padding-left: 5vw;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
   padding-right: 5vw;
-  background-color: #f5f5f5;
+  background-color: rgba(255, 255, 255, 0.5);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 10;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid rgba(155, 155, 155, 0.3);
 }
 
 .logo {

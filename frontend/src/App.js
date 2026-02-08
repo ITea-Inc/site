@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import './App.css';
 import Slide1 from './Components/Slide1';
 import Slide2 from './Components/Slide2';
+import Slide3 from './Components/Slide3';
+import Slide4 from './Components/Slide4';
 
 function App() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -10,7 +12,7 @@ function App() {
   const [slideDirection, setSlideDirection] = useState('next');
   const containerRef = useRef(null);
 
-  const slides = [Slide1, Slide2];
+  const slides = [Slide1, Slide2, Slide3, Slide4];
   const CurrentSlide = slides[currentSlide];
 
   useEffect(() => {
