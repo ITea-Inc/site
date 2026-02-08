@@ -23,16 +23,11 @@ public class TelegramServiceImpl implements TelegramService {
     @Async
     public void sendMessage(String message) {
         try {
-            String encodedText = URLEncoder.encode(message, StandardCharsets.UTF_8);
+            String url = "https://api.telegram.org/bot{token}/sendMessage?chat_id={chatId}&text={text}";
 
-            String url = String.format(
-                    "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s",
-                    telegramProperties.getToken(), telegramProperties.getChatId(), encodedText
-            );
+            restTemplate.getForObject(url, String.class, telegramProperties.getToken(), telegramProperties.getChatId(), message);
 
-            restTemplate.getForObject(url, String.class);
-
-            log.info("Уведомление в телеграмм добавлено!");
+            log.info("Уведомление в телеграмм отправлено!");
 
         } catch (Exception e) {
             log.error("Ошибка отправки сообщения в телеграмм: {}", e.getMessage());
