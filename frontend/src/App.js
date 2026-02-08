@@ -60,10 +60,19 @@ function App() {
         <div className="progress-bar" style={{ height: `${scrollProgress}%` }}></div>
       </div>
 
-      <header className="header">
-        <div className="logo">😎</div>
-        <div className="burger-menu">☰</div>
-      </header>
+    <header className="header">
+      <div className="logo">
+        <img 
+          src="/images/itea.png" 
+          alt="Logo" 
+          style={{ 
+            height: '40px', 
+            width: 'auto' 
+          }} 
+        />
+      </div>
+      <div className="burger-menu">☰</div>
+    </header>
 
       <div className={`slide-container ${isTransitioning ? 'transitioning' : ''}`}>
         <CurrentSlide 
