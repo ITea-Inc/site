@@ -66,7 +66,7 @@ function App() {
           src="/images/itea.png" 
           alt="Logo" 
           style={{ 
-            height: '40px', 
+            height: '60px', 
             width: 'auto' 
           }} 
         />

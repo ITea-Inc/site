@@ -4,7 +4,7 @@ const Slide2 = ({ scrollProgress = 0, slideDirection = 'next', isTransitioning =
   const capabilities = [
     {
       id: 1,
-      title: "Backend высшего уровня",
+      title: "Backend на голову выше",
       description: "Проектируем надёжную логику на Java и Spring, которая выдержит любые нагрузки"
     },
     {
@@ -21,7 +21,7 @@ const Slide2 = ({ scrollProgress = 0, slideDirection = 'next', isTransitioning =
 
   return (
     <div className="slide-capabilities">
-      <h1 className="capabilities-title">Наши возможности</h1>
+      <h1 className="capabilities-title">Наши преимущества</h1>
       
       <div className="capabilities-list">
         {capabilities.map((item) => (
