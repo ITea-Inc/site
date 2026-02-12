@@ -10,7 +10,7 @@ function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [slideDirection, setSlideDirection] = useState('next');
-  const [isJopa, setJopa] = useState(false)
+  //const [isJopa, setJopa] = useState(false)
   const containerRef = useRef(null);
 
   const slides = [Slide1, Slide2, Slide3, Slide4];
@@ -57,7 +57,7 @@ function App() {
   }, [scrollProgress, currentSlide, slides.length, isTransitioning]);
 
   return (
-    <div className="app" ref={containerRef} style={{display: `${isJopa ? 'none':'block'}` }}>
+    <div className="app" ref={containerRef} /*style={{display: `${isJopa ? 'none':'block'}` }}*/>
       <div className="progress-container">
         <div className="progress-bar" style={{ height: `${scrollProgress}%` }}></div>
       </div>
@@ -73,7 +73,7 @@ function App() {
           }} 
         />
       </div>
-      <div className="burger-menu" onClick={(e)=>setJopa(true)}>☰</div>
+      <div className="burger-menu" /*onClick={(e)=>setJopa(true)}*/>☰</div>
     </header>
 
       <div className={`slide-container ${isTransitioning ? 'transitioning' : ''}`}  >
