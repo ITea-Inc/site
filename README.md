@@ -1,14 +1,12 @@
-# Special for Maksim
+# Frontend part
 
-### To start frontend of our site you need to 
-1) `cd i ne perdi`
-2) `cd site`
-3) `cd frontend`
-4) `npm install` if you haven`t npm modules on your Pisi(●'◡'●) (Node.js is already on your PiCi)
-5) `npm start`
-6) When you alldone `Ctrl+C`
+### To start frontend of our site you need to open terminal and:
+1) `cd site`
+2) `cd frontend`
+3) `npm install` if you haven`t npm modules on your PC (You need to install Node.js before. Install guide: https://timeweb.cloud/tutorials/nodejs/kak-ustanovit-node-js-na-windows)
+4) `npm start`
+5) When you finish: `Ctrl+C` to stop
 
-## Atention
-`Don't press burger menu!!!`
+# Backend part
 
-From Sasha and Artem with love😘
+### Will be updated
