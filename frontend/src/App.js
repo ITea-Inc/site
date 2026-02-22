@@ -10,10 +10,12 @@ function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [slideDirection, setSlideDirection] = useState('next');
+  //const [isJopa, setJopa] = useState(false)
   const containerRef = useRef(null);
 
   const slides = [Slide1, Slide2, Slide3, Slide4];
   const CurrentSlide = slides[currentSlide];
+
 
   useEffect(() => {
     const handleWheel = (e) => {
@@ -55,17 +57,26 @@ function App() {
   }, [scrollProgress, currentSlide, slides.length, isTransitioning]);
 
   return (
-    <div className="app" ref={containerRef}>
+    <div className="app" ref={containerRef} /*style={{display: `${isJopa ? 'none':'block'}` }}*/>
       <div className="progress-container">
         <div className="progress-bar" style={{ height: `${scrollProgress}%` }}></div>
       </div>
 
-      <header className="header">
-        <div className="logo">😎</div>
-        <div className="burger-menu">☰</div>
-      </header>
+    <header className="header">
+      <div className="logo">
+        <img 
+          src="/images/itea.png" 
+          alt="Logo" 
+          style={{ 
+            height: '60px', 
+            width: 'auto' 
+          }} 
+        />
+      </div>
+      <div className="burger-menu" /*onClick={(e)=>setJopa(true)}*/>☰</div>
+    </header>
 
-      <div className={`slide-container ${isTransitioning ? 'transitioning' : ''}`}>
+      <div className={`slide-container ${isTransitioning ? 'transitioning' : ''}`}  >
         <CurrentSlide 
           scrollProgress={scrollProgress} 
           slideDirection={slideDirection}
