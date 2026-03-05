@@ -4,37 +4,42 @@ const Slide2 = ({ scrollProgress = 0, slideDirection = 'next', isTransitioning =
   const capabilities = [
     {
       id: 1,
-      title: "Backend на голову выше",
-      description: "Проектируем надёжную логику на Java и Spring, которая выдержит любые нагрузки"
+      stat: "13 500+",
+      title: "Проектов по России",
+      description: "Успешно реализованных проектов от небольших лендингов до крупных корпоративных систем"
     },
     {
       id: 2,
-      title: "Комплексная разработка",
-      description: "Мы - слаженная команда, где каждый отвечает за свою часть пазла: от идеи до деллов"
+      stat: "8 лет",
+      title: "На рынке разработки",
+      description: "Стабильно растем и развиваемся, адаптируясь к новым технологиям и требованиям рынка"
     },
     {
       id: 3,
-      title: "Внимание к деталям",
-      description: "Не просто \"пишем код\", а вникаем в бизнес-логику вашего продукта, чтобы каждое решение работало на результат"
+      stat: "97%",
+      title: "Довольных клиентов",
+      description: "Возвращаются к нам с новыми проектами и рекомендуют нас партнерам"
     }
   ];
 
   return (
-    <div className="slide-capabilities">
-      <h1 className="capabilities-title">Наши преимущества</h1>
-      
-      <div className="capabilities-list">
-        {capabilities.map((item) => (
-          <div key={item.id} className="capability-item">
-            <div className="capability-header">
-              <div className="capability-icon">{item.id}</div>
-              <h3>{item.title}</h3>
+    <section className={`slide ${slideDirection} ${isTransitioning ? 'slide-exit' : 'slide-enter'}`}>
+      <div className="slide-capabilities">
+        <h1 className="capabilities-title">Наши преимущества в цифрах</h1>
+        
+        <div className="capabilities-list">
+          {capabilities.map((item) => (
+            <div key={item.id} className="capability-item">
+              <div className="capability-stat-wrapper">
+                <span className="capability-stat-number">{item.stat}</span>
+                <h3>{item.title}</h3>
+              </div>
+              <p>{item.description}</p>
             </div>
-            <p>{item.description}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

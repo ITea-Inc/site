@@ -10,6 +10,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -60,16 +62,21 @@ public class RateLimitFilter implements Filter {
 
 
     private static class RequestCounter {
-        private final AtomicInteger count = new AtomicInteger(0);
-        private volatile long windowStart = System.currentTimeMillis();
+        private final Deque<Long> requestTimes = new ArrayDeque<>();
 
         boolean allowRequest() {
             long now = System.currentTimeMillis();
-            if (now - windowStart > TIME_WINDOW_MS) {
-                count.set(0);
-                windowStart = now;
+
+            while (!requestTimes.isEmpty() && now - requestTimes.peekFirst() > TIME_WINDOW_MS) {
+                requestTimes.pollFirst();
             }
-            return count.incrementAndGet() <= MAX_REQUESTS;
+
+            if (requestTimes.size() < MAX_REQUESTS) {
+                requestTimes.addLast(now);
+                return true;
+            }
+
+            return false;
         }
     }
 }

@@ -6,59 +6,71 @@ import Slide3 from './Components/Slide3';
 import Slide4 from './Components/Slide4';
 
 function App() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isJopa, setJopa] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(null);
   const slidesRef = useRef([]);
+  const isClicked = useRef(false);
   
   const slides = [Slide1, Slide2, Slide3, Slide4];
+  const slideNames = ['Главная', 'О нас', 'Процесс', 'Контакты'];
+
+  const scrollToSlide = (index) => {
+    if (slidesRef.current[index]) {
+      isClicked.current = true;
+      setActiveSlide(index);
+      
+      slidesRef.current[index].scrollIntoView({ 
+        behavior: 'smooth' 
+      });
+
+      setTimeout(() => {
+        isClicked.current = false;
+      }, 1000);
+    }
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
+    const handleScroll = (e) => {
       
-      // Определяем текущий слайд на основе позиции скролла
-      const newSlide = Math.round(scrollPosition / windowHeight);
-      setCurrentSlide(Math.min(slides.length - 1, Math.max(0, newSlide)));
+      if (!isClicked.current) {
+        setActiveSlide(null);
+      }
     };
 
+    window.addEventListener('wheel', handleScroll);
     window.addEventListener('scroll', handleScroll);
-    
-    // Устанавливаем начальную позицию
-    handleScroll();
+    document.addEventListener('wheel', handleScroll);
     
     return () => {
+      window.removeEventListener('wheel', handleScroll);
       window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('wheel', handleScroll);
     };
-  }, [slides.length]);
+  }, []);
 
   return (
-    <div className="app" style={{display: `${isJopa ? 'none':'block'}` }}>
-      {/* Прогресс активного слайда */}
-      {/* <div className="progress-container">
-        <div 
-          className="progress-bar" 
-          style={{ 
-            height: `${((currentSlide + 1) / slides.length) * 100}%` 
-          }}
-        ></div>
-      </div> */}
-
+    <div className="app">
       <header className="header">
         <div className="logo">
           <img 
             src="/images/itea.png" 
             alt="Logo" 
-            style={{ 
-              height: '60px', 
-              width: 'auto' 
-            }} 
+            style={{ height: '60px', width: 'auto' }} 
           />
         </div>
-        <div className="burger-menu" onClick={() => setJopa(true)}>☰</div>
+        
+        <nav className="header-nav">
+          {slideNames.map((name, index) => (
+            <button
+              key={index}
+              className={`nav-link ${activeSlide === index ? 'active' : ''}`}
+              onClick={() => scrollToSlide(index)}
+            >
+              {name}
+            </button>
+          ))}
+        </nav>
       </header>
 
-      {/* Все слайды сразу */}
       <div className="slides-container">
         {slides.map((Slide, index) => (
           <div 
