@@ -26,10 +26,10 @@ const Slide4 = ({ scrollProgress = 0, slideDirection = 'next', isTransitioning =
               </div>
 
               <div className="form-group">
-                <label htmlFor="message">Сообщение</label>
+                <label htmlFor="body">Сообщение</label>
                 <textarea 
-                  id="message" 
-                  name="message" 
+                  id="body" 
+                  name="body" 
                   placeholder="Опишите вашу задачу или идею..."
                   rows="4"
                   required
