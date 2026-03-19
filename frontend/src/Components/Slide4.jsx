@@ -12,7 +12,7 @@ const Slide4 = ({ scrollProgress = 0, slideDirection = 'next', isTransitioning =
               Расскажите о своей идее, и мы предложим оптимальный стек технологий для её реализации.
             </p>
 
-            {/* Новая форма обратной связи */}
+            
             <form className="slide4-form" onSubmit={(e) => e.preventDefault()}>
               <div className="form-group">
                 <label htmlFor="email">Email</label>

@@ -12,7 +12,7 @@ const Slide1 = ({ scrollProgress = 0, slideDirection = 'next', isTransitioning =
             Улучшаем процессы, автоматизируем задачи и помогаем вашему бизнесу расти с помощью передовых IT-решений.
           </p>
           
-          {/* Плашки с характеристиками */}
+          
           <div className="slide1-chips">
             <div className="chips-row">
               <span className="chip">Качество</span>
