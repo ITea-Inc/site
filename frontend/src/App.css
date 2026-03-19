@@ -948,6 +948,20 @@ img {
 @media (max-width: 768px) {
   :root {
     font-size: 12px;
+    --container-padding: 15px;
+  }
+
+  .slide-wrapper {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .slide, .slide3 {
+    height: auto;
+    min-height: 100vh;
+    padding-bottom: 3rem;
+    flex-direction: column;
+    overflow-y: visible;
   }
 
   .progress-container {
@@ -962,44 +976,131 @@ img {
   .header-nav {
     display: none;
   }
+  
+  /* Слайд 1 */
+  .slide1-content {
+    flex-direction: column;
+    height: auto;
+    overflow-y: visible;
+  }
 
+  .slide1-left {
+    max-width: 100%;
+    margin-top: 2vh;
+  }
+
+  .slide1-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .slide1-description {
+    font-size: 1rem;
+  }
+
+  .slide1-right {
+    position: static;
+    width: 100%;
+    margin-top: 1.5rem;
+    justify-content: center;
+  }
+
+  .slide1-tiles {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .slide1-tile-process,
+  .slide1-tile-scalable,
+  .slide1-tile-custom {
+    min-height: auto;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .tile-title {
+    font-size: 1.2rem;
+  }
+
+  .tile-description {
+    font-size: 1rem;
+  }
+
+  .slide1-video {
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Слайд 2 */
   .slide-capabilities {
-    padding: calc(var(--header-height) + 2vh) 20px 60px;
+    padding: calc(var(--header-height) + 2vh) 15px 40px;
     height: auto;
     min-height: 100vh;
   }
   
   .capabilities-title {
-    font-size: 2.2rem;
-    margin-bottom: 40px;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
   }
   
   .capabilities-list {
     grid-template-columns: 1fr;
-    gap: 25px;
-    padding: 10px;
+    gap: 15px;
+    padding: 10px 0;
+    margin-top: 2vh;
   }
   
   .capability-item {
-    padding: 30px 25px;
+    padding: 20px 15px;
     min-height: auto;
   }
   
   .capability-stat-number {
-    font-size: 2.8rem;
+    font-size: 2.2rem;
   }
   
   .capability-item h3 {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
   }
   
   .capability-item p {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
   }
 
+  /* Слайд 3 */
+  .process-container {
+    padding-top: 2vh;
+  }
+
+  .steps {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .step {
+    width: 80%;
+    height: auto;
+    margin-top: 1vh;
+  }
+  
+  .step-description {
+    width: 100%;
+  }
+
+  .ArrLContainer, .ArrRContainer {
+    display: none;
+  }
+
+  .tech-marquee {
+    display: none;
+  }
+
+  /* Слайд 4 */
   .slide4-container {
     justify-content: center;
-    padding: 0 20px;
+    padding: 0 15px;
   }
   
   .slide4-content {
@@ -1009,26 +1110,26 @@ img {
   
   .slide4-left {
     width: 100%;
-    padding: 2.5rem 2rem;
+    padding: 2rem 1.5rem;
     text-align: center;
   }
   
   .slide4-right {
     width: 100%;
-    padding: 1rem 2rem 3rem;
+    padding: 1rem 1.5rem 2rem;
   }
   
   .slide4-qr-image {
-    height: 200px;
-    max-height: 200px;
+    height: 150px;
+    max-height: 150px;
   }
 
   .slide4-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   .slide4-description {
-    font-size: 1.1rem;
+    font-size: 1rem;
     text-align: center;
   }
 
@@ -1045,32 +1146,19 @@ img {
   .form-group label {
     text-align: left;
     width: 100%;
+    font-size: 0.85rem;
   }
 
   .form-group input,
   .form-group textarea {
     width: 100%;
+    padding: 0.8rem 1rem;
   }
 
   .slide4-button {
     align-self: center;
-  }
-
-  .tech-item {
-    margin: 0 1rem;
-    min-width: 70px;
-  }
-  
-  .tech-icon {
-    height: 30px;
-  }
-  
-  .tech-name {
-    font-size: 0.8rem;
-  }
-  
-  .tech-marquee-track {
-    animation-duration: 15s;
+    padding: 0.9rem 2rem;
+    font-size: 1.1rem;
   }
 }
 
