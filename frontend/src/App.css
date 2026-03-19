@@ -478,7 +478,7 @@ html, body {
   justify-content: flex-start;
   align-items: center;
   box-sizing: border-box;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 .capabilities-title {
