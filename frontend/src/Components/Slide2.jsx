@@ -4,7 +4,7 @@ const Slide2 = ({ scrollProgress = 0, slideDirection = 'next', isTransitioning =
   const capabilities = [
     {
       id: 1,
-      stat: "13 500+",
+      stat: "120+",
       title: "Проектов по России",
       description: "Успешно реализованных проектов от небольших лендингов до крупных корпоративных систем"
     },
