@@ -7,7 +7,8 @@ const Slide4 = ({ scrollProgress = 0, slideDirection = 'next', isTransitioning =
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const response = await fetch('http://localhost:8080/api/contact', {
+      // Используем относительный путь, чтобы Nginx проксировал запросы на Spring Boot
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -23,7 +24,7 @@ const Slide4 = ({ scrollProgress = 0, slideDirection = 'next', isTransitioning =
       }
     } catch (error) {
       console.error('Ошибка отправки:', error);
-      alert('Нет связи с сервером. Проверьте, работает ли backend на localhost:8080.');
+      alert('Нет связи с сервером. Проверьте, работает ли backend.');
     }
   };
 
