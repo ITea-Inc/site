@@ -1,64 +1,84 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-const Slide1 = ({ scrollProgress = 0, slideDirection = 'next', isTransitioning = false }) => {
+const Slide1 = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { root: document.querySelector('.app-container'), threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+    };
+  }, []);
+
   return (
-    <section className={`slide ${slideDirection} ${isTransitioning ? 'slide-exit' : 'slide-enter'}`}>
-      <div className="slide1-content">
-        <div className="slide1-left">
-          <h1 className="slide1-title">
-            Интеграция IT в бизнес любого масштаба и любой сложности
-          </h1>
-          <p className="slide1-description">
-            Улучшаем процессы, автоматизируем задачи и помогаем вашему бизнесу расти с помощью передовых IT-решений.
-          </p>
+    <div ref={sectionRef} className={`hero-content fade-in-section ${isVisible ? 'is-visible' : ''}`}>
+      <div className="hero-left">
+        <h1 className="hero-title">
+          Интеграция IT в бизнес <span>любого масштаба</span>
+        </h1>
+        <p className="hero-description">
+          Улучшаем процессы, автоматизируем задачи и помогаем вашему бизнесу расти с помощью передовых IT-решений и индивидуального подхода.
+        </p>
 
+        <div className="hero-chips">
+          <span className="chip">Качество</span>
+          <span className="chip">Скорость</span>
+          <span className="chip">Надежность</span>
+          <span className="chip">Инновации</span>
+          <span className="chip">Экспертиза</span>
+          <span className="chip">Поддержка 24/7</span>
+          <span className="chip">Индивидуальный подход</span>
+          <span className="chip">Безопасность</span>
+        </div>
+      </div>
 
-          <div className="slide1-chips">
-            <div className="chips-row">
-              <span className="chip">Качество</span>
-              <span className="chip">Скорость</span>
-              <span className="chip">Надежность</span>
-              <span className="chip">Инновации</span>
-              <span className="chip">Экспертиза</span>
-            </div>
-            <div className="chips-row">
-              <span className="chip">Поддержка 24/7</span>
-              <span className="chip">Индивидуальный подход</span>
-              <span className="chip">Прозрачность</span>
-              <span className="chip">Безопасность</span>
-            </div>
+      <div className="hero-right">
+        <div className="feature-card">
+          <div className="feature-icon">
+            <img src="/images/settings-svgrepo-com.svg" alt="Быстрая разработка" />
+          </div>
+          <div className="feature-content">
+            <h3>Быстрая разработка</h3>
+            <p>Эффективное и безошибочное выполнение задач благодаря автоматизации процессов.</p>
           </div>
         </div>
 
-        <div className="slide1-right">
-          <div className="slide1-tiles">
-            <div className="tile slide1-tile-process">
-              <div className="tile-photo-Title">
-                <img className='settingsPhoto' src='images/settings-svgrepo-com.svg' alt="settings"></img>
-                <div className="tile-title">Быстрая разработка</div>
-              </div>
-              <div className="tile-description">Эффективное и безошибочное выполнение задач благодаря автоматизации</div>
-            </div>
+        <div className="feature-card">
+          <div className="feature-icon">
+            <img src="/images/chart-growth-invest-svgrepo-com.svg" alt="Масштабируемые решения" />
+          </div>
+          <div className="feature-content">
+            <h3>Масштабируемые решения</h3>
+            <p>Гибкие IT-решения, которые растут вместе с вашим бизнесом и адаптируются к изменениям.</p>
+          </div>
+        </div>
 
-            <div className="tile slide1-tile-scalable">
-              <div className="tile-photo-Title">
-                <img className='settingsPhoto' src='images/chart-growth-invest-svgrepo-com.svg' alt="growth"></img>
-                <div className="tile-title">Масштабируемые решения</div>
-              </div>
-              <div className="tile-description">Гибкие IT-решения, которые растут вместе с вашим бизнесом</div>
-            </div>
-
-            <div className="tile slide1-tile-custom">
-              <div className="tile-photo-Title">
-                <img className='settingsPhoto' src='images/businessman-svgrepo-com.svg' alt="businessman"></img>
-                <div className="tile-title">Индивидуальный подход</div>
-              </div>
-              <div className="tile-description">Адаптируемся под уникальные потребности вашего бизнеса</div>
-            </div>
+        <div className="feature-card">
+          <div className="feature-icon">
+            <img src="/images/businessman-svgrepo-com.svg" alt="Индивидуальный подход" />
+          </div>
+          <div className="feature-content">
+            <h3>Индивидуальный подход</h3>
+            <p>Адаптируемся под уникальные потребности вашего бизнеса и находим лучшие решения.</p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
+
 export default Slide1;

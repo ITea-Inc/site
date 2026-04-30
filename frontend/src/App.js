@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Slide1 from './Components/Slide1';
 import Slide2 from './Components/Slide2';
@@ -6,82 +6,90 @@ import Slide3 from './Components/Slide3';
 import Slide4 from './Components/Slide4';
 
 function App() {
-  const [activeSlide, setActiveSlide] = useState(null);
-  const slidesRef = useRef([]);
-  const isClicked = useRef(false);
+  const [activeSection, setActiveSection] = useState('section-0');
   
-  const slides = [Slide1, Slide2, Slide3, Slide4];
-  const slideNames = ['Главная', 'О нас', 'Процесс', 'Контакты'];
+  const bgRef1 = useRef(null);
+  const bgRef2 = useRef(null);
+  const bgRef3 = useRef(null);
 
-  const scrollToSlide = (index) => {
-    if (slidesRef.current[index]) {
-      isClicked.current = true;
-      setActiveSlide(index);
-      
-      slidesRef.current[index].scrollIntoView({ 
-        behavior: 'smooth' 
-      });
+  const slides = [
+    { id: 'section-0', Component: Slide1, name: 'Главная' },
+    { id: 'section-1', Component: Slide2, name: 'О нас' },
+    { id: 'section-2', Component: Slide3, name: 'Процесс' },
+    { id: 'section-3', Component: Slide4, name: 'Контакты' },
+  ];
 
-      setTimeout(() => {
-        isClicked.current = false;
-      }, 1000);
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
+  const handleScroll = (e) => {
+    const y = e.target.scrollTop;
+    if (bgRef1.current) bgRef1.current.style.transform = `translateY(${y * -0.15}px)`;
+    if (bgRef2.current) bgRef2.current.style.transform = `translateY(${y * 0.2}px)`;
+    if (bgRef3.current) bgRef3.current.style.transform = `translateY(${y * -0.25}px)`;
+  };
+
   useEffect(() => {
-    const handleScroll = (e) => {
-      
-      if (!isClicked.current) {
-        setActiveSlide(null);
-      }
+    const container = document.querySelector('.app-container');
+    const observerOptions = {
+      root: container,
+      rootMargin: '0px',
+      threshold: 0.5,
     };
 
-    window.addEventListener('wheel', handleScroll);
-    window.addEventListener('scroll', handleScroll);
-    document.addEventListener('wheel', handleScroll);
-    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, observerOptions);
+
+    const sections = document.querySelectorAll('.section');
+    sections.forEach((section) => observer.observe(section));
+
     return () => {
-      window.removeEventListener('wheel', handleScroll);
-      window.removeEventListener('scroll', handleScroll);
-      document.removeEventListener('wheel', handleScroll);
+      sections.forEach((section) => observer.unobserve(section));
     };
   }, []);
 
   return (
-    <div className="app">
+    <div className="app-container" onScroll={handleScroll}>
+      <div className="animated-bg">
+        <div ref={bgRef1} className="shape-parallax"><div className="shape shape-1"></div></div>
+        <div ref={bgRef2} className="shape-parallax"><div className="shape shape-2"></div></div>
+        <div ref={bgRef3} className="shape-parallax"><div className="shape shape-3"></div></div>
+      </div>
+
       <header className="header">
         <div className="logo">
-          <img 
-            src="/images/itea.png" 
-            alt="Logo" 
-            style={{ height: '60px', width: 'auto' }} 
-          />
+          <img src="/images/itea.png" alt="Logo" />
         </div>
         
         <nav className="header-nav">
-          {slideNames.map((name, index) => (
+          {slides.map((slide) => (
             <button
-              key={index}
-              className={`nav-link ${activeSlide === index ? 'active' : ''}`}
-              onClick={() => scrollToSlide(index)}
+              key={slide.id}
+              className={`nav-link ${activeSection === slide.id ? 'active' : ''}`}
+              onClick={() => scrollToSection(slide.id)}
             >
-              {name}
+              {slide.name}
             </button>
           ))}
         </nav>
       </header>
 
-      <div className="slides-container">
-        {slides.map((Slide, index) => (
-          <div 
-            key={index} 
-            className="slide-wrapper"
-            ref={el => slidesRef.current[index] = el}
-          >
-            <Slide />
+      <main>
+        {slides.map((slide) => (
+          <div id={slide.id} key={slide.id} className="section">
+            <slide.Component />
           </div>
         ))}
-      </div>
+      </main>
     </div>
   );
 }

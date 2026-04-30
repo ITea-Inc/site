@@ -1,6 +1,29 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-const Slide2 = ({ scrollProgress = 0, slideDirection = 'next', isTransitioning = false }) => {
+const Slide2 = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { root: document.querySelector('.app-container'), threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+    };
+  }, []);
+
   const capabilities = [
     {
       id: 1,
@@ -23,23 +46,25 @@ const Slide2 = ({ scrollProgress = 0, slideDirection = 'next', isTransitioning =
   ];
 
   return (
-    <section className={`slide ${slideDirection} ${isTransitioning ? 'slide-exit' : 'slide-enter'}`}>
-      <div className="slide-capabilities">
-        <h1 className="capabilities-title">Наши преимущества в цифрах</h1>
-        
-        <div className="capabilities-list">
-          {capabilities.map((item) => (
-            <div key={item.id} className="capability-item">
-              <div className="capability-stat-wrapper">
-                <span className="capability-stat-number">{item.stat}</span>
-                <h3>{item.title}</h3>
-              </div>
-              <p>{item.description}</p>
-            </div>
-          ))}
-        </div>
+    <div ref={sectionRef} className={`stats-section fade-in-section ${isVisible ? 'is-visible' : ''}`}>
+      <h2 className="section-title">
+        Наши <span>преимущества</span> в цифрах
+      </h2>
+      
+      <div className="stats-grid">
+        {capabilities.map((item, index) => (
+          <div 
+            key={item.id} 
+            className="stat-card"
+            style={{ transitionDelay: `${index * 150}ms` }}
+          >
+            <div className="stat-number">{item.stat}</div>
+            <h3 className="stat-title">{item.title}</h3>
+            <p className="stat-desc">{item.description}</p>
+          </div>
+        ))}
       </div>
-    </section>
+    </div>
   );
 };
 
