@@ -1,6 +1,28 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-const Slide3 = ({ scrollProgress = 0, slideDirection = 'next', isTransitioning = false }) => {
+const Slide3 = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { root: document.querySelector('.app-container'), threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+    };
+  }, []);
 
   const technologies = [
     { id: 1, name: 'Java', icon: '/images/tech/java.svg' },
@@ -17,71 +39,48 @@ const Slide3 = ({ scrollProgress = 0, slideDirection = 'next', isTransitioning =
 
   const infiniteTechnologies = [...technologies, ...technologies, ...technologies];
 
+  const processSteps = [
+    { title: 'Бренд & Анализ', icon: '/images/1.png' },
+    { title: 'UI/UX Проектирование', icon: '/images/2.png' },
+    { title: 'Frontend Разработка', icon: '/images/3.png' },
+    { title: 'Backend Разработка', icon: '/images/4.png' },
+    { title: 'Тестирование & Запуск', icon: '/images/5.png' }
+  ];
+
   return (
-    <section className={`slide3 ${slideDirection} ${isTransitioning ? 'slide-exit' : 'slide-enter'}`}>
-      <div className="process-container">
-        <div className="title-container">
-          <div className="capabilities-title">Наш процесс разработки</div>
-        </div>
-        
+    <div ref={sectionRef} className={`process-section fade-in-section ${isVisible ? 'is-visible' : ''}`}>
+      <h2 className="section-title">
+        Наш <span>процесс</span> разработки
+      </h2>
+      
+      <div className="process-timeline">
+        {processSteps.map((step, index) => (
+          <div 
+            key={index} 
+            className="process-step"
+            style={{ transitionDelay: `${index * 150}ms` }}
+          >
+            <div className="step-icon-wrapper">
+              <img src={step.icon} alt={step.title} />
+            </div>
+            <div className="step-info">
+              <div className="step-name">{step.title}</div>
+            </div>
+          </div>
+        ))}
+      </div>
 
-        <div className="steps">
-          <div className="step">
-            <div className="image-container">
-              <img src="/images/1.png" className="imgClaster" alt="brain"></img>
+      <div className="tech-marquee-container">
+        <div className="tech-track">
+          {infiniteTechnologies.map((tech, index) => (
+            <div key={`${tech.id}-${index}`} className="tech-item">
+              <img src={tech.icon} alt={tech.name} />
+              <span>{tech.name}</span>
             </div>
-            <div className="step-title">Бренд & Анализ</div>
-          </div>
-          <div className="ArrLContainer">
-            <img src="/images/arrL.png" className="ArrowLeft" alt="arrowLeft"></img>
-          </div>
-          <div className="step">
-            <div className="image-container">
-              <img src="/images/2.png" className="imgClaster" alt="UI/UX"></img>
-            </div>
-            <div className="step-title">UI/UX Проектирование</div>
-          </div>
-          <div className="ArrRContainer">
-            <img src="/images/arrR.png" className="ArrowRight" alt="arrowRight"></img>
-          </div>
-          <div className="step">
-            <div className="image-container">
-              <img src="/images/3.png" className="imgClaster" alt="FrontEnd"></img>
-            </div>
-            <div className="step-title">Frontend Разработка</div>
-          </div>
-          <div className="ArrLContainer">
-            <img src="/images/arrL.png" className="ArrowLeft" alt="arrowLeft"></img>
-          </div>
-          <div className="step">
-            <div className="image-container">
-              <img src="/images/4.png" className="imgClaster" alt="BackEnd"></img>
-            </div>
-            <div className="step-title">Backend (Java/Spring)</div>
-          </div>
-          <div className="ArrRContainer">
-            <img src="/images/arrR.png" className="ArrowRight" alt="arrowRight"></img>
-          </div>
-          <div className="step">
-            <div className="image-container">
-              <img src="/images/5.png" className="imgClaster" alt="Rocket"></img>
-            </div>
-            <div className="step-title">Тестирование & Запуск</div>
-          </div>
-        </div>
-
-        <div className="tech-marquee">
-          <div className="tech-marquee-track">
-            {infiniteTechnologies.map((tech, index) => (
-              <div key={`${tech.id}-${index}`} className="tech-item">
-                <img src={tech.icon} alt={tech.name} className="tech-icon" />
-                <span className="tech-name">{tech.name}</span>
-              </div>
-            ))}
-          </div>
+          ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
