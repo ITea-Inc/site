@@ -1,82 +1,54 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
 const Slide1 = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
+  const scrollToCases = () => {
+    document.getElementById('section-1')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { root: document.querySelector('.app-container'), threshold: 0.2 }
-    );
+  const scrollToContact = () => {
+    document.getElementById('section-3')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-    };
-  }, []);
+  const pillars = [
+    { title: 'Структура', copy: 'Понятно и убедительно.', image: '/images/2.jpg', alt: 'Структура' },
+    { title: 'Фокус', copy: 'На действиях.', image: '/images/3.jpg', alt: 'Фокус' },
+    { title: 'Результат', copy: 'Заявки и рост.', image: '/images/4.jpg', alt: 'Результат' },
+  ];
 
   return (
-    <div ref={sectionRef} className={`hero-content fade-in-section ${isVisible ? 'is-visible' : ''}`}>
-      <div className="hero-left">
-        <h1 className="hero-title">
-          Интеграция IT в бизнес <span>любого масштаба</span>
-        </h1>
-        <p className="hero-description">
-          Улучшаем процессы, автоматизируем задачи и помогаем вашему бизнесу расти с помощью передовых IT-решений и индивидуального подхода.
-        </p>
+    <div className="hero-content fade-in-section is-visible">
+      <section className="hero-panel">
+        <div className="hero-copy">
+          <h1 className="hero-title">
+            Сайты,<br />
+            которые ведут<br />
+            к заявке
+          </h1>
+          <p className="hero-description">Структура. Фокус. Результат.</p>
 
-        <div className="hero-chips">
-          <span className="chip">Качество</span>
-          <span className="chip">Скорость</span>
-          <span className="chip">Надежность</span>
-          <span className="chip">Инновации</span>
-          <span className="chip">Экспертиза</span>
-          <span className="chip">Поддержка 24/7</span>
-          <span className="chip">Индивидуальный подход</span>
-          <span className="chip">Безопасность</span>
-        </div>
-      </div>
-
-      <div className="hero-right">
-        <div className="feature-card">
-          <div className="feature-icon">
-            <img src="/images/settings-svgrepo-com.svg" alt="Быстрая разработка" />
-          </div>
-          <div className="feature-content">
-            <h3>Быстрая разработка</h3>
-            <p>Эффективное и безошибочное выполнение задач благодаря автоматизации процессов.</p>
+          <div className="hero-actions">
+            <button className="primary-button" onClick={scrollToContact}>Обсудить проект</button>
+            <button className="text-button" onClick={scrollToCases}>
+              Смотреть кейсы
+              <span aria-hidden="true">→</span>
+            </button>
           </div>
         </div>
 
-        <div className="feature-card">
-          <div className="feature-icon">
-            <img src="/images/chart-growth-invest-svgrepo-com.svg" alt="Масштабируемые решения" />
-          </div>
-          <div className="feature-content">
-            <h3>Масштабируемые решения</h3>
-            <p>Гибкие IT-решения, которые растут вместе с вашим бизнесом и адаптируются к изменениям.</p>
-          </div>
+        <div className="hero-art" aria-hidden="true">
+          <img src="/images/1.jpg" alt="Hero Art" style={{ width: '100%', height: 'auto', maxWidth: '800px', objectFit: 'contain' }} />
         </div>
+      </section>
 
-        <div className="feature-card">
-          <div className="feature-icon">
-            <img src="/images/businessman-svgrepo-com.svg" alt="Индивидуальный подход" />
-          </div>
-          <div className="feature-content">
-            <h3>Индивидуальный подход</h3>
-            <p>Адаптируемся под уникальные потребности вашего бизнеса и находим лучшие решения.</p>
-          </div>
-        </div>
-      </div>
+      <section className="pillars-panel" aria-label="Подход">
+        {pillars.map((pillar) => (
+          <article className="pillar-card" key={pillar.title}>
+            <img src={pillar.image} alt={pillar.alt} className="pillar-image" />
+            <h2>{pillar.title}</h2>
+            <p>{pillar.copy}</p>
+          </article>
+        ))}
+      </section>
     </div>
   );
 };

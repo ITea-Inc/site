@@ -1,68 +1,56 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
 const Slide2 = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { root: document.querySelector('.app-container'), threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-    };
-  }, []);
-
-  const capabilities = [
+  const cases = [
     {
       id: 1,
-      stat: "120+",
-      title: "Проектов по России",
-      description: "Успешно реализованных проектов от небольших лендингов до крупных корпоративных систем"
+      title: 'Завод оборудования',
+      metric: 'Рост заявок: ×2,7',
+      image: '/images/6.jpg'
     },
     {
       id: 2,
-      stat: "8 лет",
-      title: "На рынке разработки",
-      description: "Стабильно растем и развиваемся, адаптируясь к новым технологиям и требованиям рынка"
+      title: 'Платформа для бизнеса',
+      metric: 'Рост конверсии: +63%',
+      image: '/images/7.jpg'
     },
     {
       id: 3,
-      stat: "97%",
-      title: "Довольных клиентов",
-      description: "Возвращаются к нам с новыми проектами и рекомендуют нас партнерам"
+      title: 'Юридическая компания',
+      metric: 'Рост заявок: +48%',
+      image: '/images/8.jpg'
     }
   ];
 
   return (
-    <div ref={sectionRef} className={`stats-section fade-in-section ${isVisible ? 'is-visible' : ''}`}>
-      <h2 className="section-title">
-        Наши <span>преимущества</span> в цифрах
-      </h2>
-      
-      <div className="stats-grid">
-        {capabilities.map((item, index) => (
-          <div 
+    <div className="cases-section fade-in-section is-visible">
+      <div className="cases-art" aria-hidden="true">
+        <img src="/images/5.jpg" alt="Cases Art" style={{ width: '100%', height: 'auto', maxWidth: '600px', objectFit: 'contain', display: 'block', margin: '0 auto' }} />
+      </div>
+
+      <div className="cases-content">
+        <p className="section-kicker">Кейсы</p>
+        <h2 className="section-title">Сайты, которые приносят заявки</h2>
+        <button className="text-button cases-link">
+          Смотреть все кейсы
+          <span aria-hidden="true">→</span>
+        </button>
+
+        <div className="case-grid">
+          {cases.map((item, index) => (
+            <article
             key={item.id} 
-            className="stat-card"
+            className="case-card"
             style={{ transitionDelay: `${index * 150}ms` }}
           >
-            <div className="stat-number">{item.stat}</div>
-            <h3 className="stat-title">{item.title}</h3>
-            <p className="stat-desc">{item.description}</p>
-          </div>
-        ))}
+              <div className="case-visual-wrapper">
+                <img src={item.image} alt={item.title} className="case-visual" />
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.metric}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   );

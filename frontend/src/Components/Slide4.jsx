@@ -1,29 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
 const Slide4 = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { root: document.querySelector('.app-container'), threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-    };
-  }, []);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -51,52 +28,56 @@ const Slide4 = () => {
   };
 
   return (
-    <div ref={sectionRef} className={`contact-section fade-in-section ${isVisible ? 'is-visible' : ''}`}>
-      <h2 className="section-title">
-        Свяжитесь с <span>нами</span>
-      </h2>
-
+    <div className="contact-section fade-in-section is-visible">
       <div className="contact-container">
-        <div className="contact-left">
-          <h3 className="contact-title">Давайте обсудим ваш проект</h3>
-          <p className="contact-desc">
-            Расскажите о своей идее, и мы предложим оптимальный стек технологий для её реализации.
-          </p>
+        <section className="contact-left">
+          <h2 className="contact-title">Связаться</h2>
 
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="email">Email</label>
               <input
                 type="email"
                 id="email"
                 name="email"
-                placeholder="your@email.com"
+                placeholder="Email"
                 required
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="body">Сообщение</label>
               <textarea
                 id="body"
                 name="body"
-                placeholder="Опишите вашу задачу или идею..."
+                placeholder="Задача"
                 required
               />
             </div>
 
             <button type="submit" className="btn-submit">
-              Отправить заявку
+              Отправить
             </button>
           </form>
+        </section>
+
+        <div className="contact-art" aria-hidden="true">
+          <img src="/images/13.jpg" alt="Contact Art" style={{ width: '100%', height: 'auto', maxWidth: '500px', objectFit: 'contain', display: 'block', margin: '0 auto' }} />
         </div>
 
-        <div className="contact-right">
+        <aside className="contact-right">
           <div className="qr-card">
-            <img src="/images/qrcode.png" alt="QR код для связи" />
+            <img src="/images/14.png" alt="QR код для связи" />
           </div>
-        </div>
+          <h3>Telegram</h3>
+          <p>Сканируйте, чтобы написать нам.</p>
+        </aside>
       </div>
+
+      <footer className="footer">
+        <button onClick={() => document.getElementById('section-0')?.scrollIntoView({ behavior: 'smooth' })}>ITea</button>
+        <span>© 2024 ITea. Все права защищены.</span>
+        <a href="#section-3">Политика конфиденциальности</a>
+        <a href="#section-3">Контакты</a>
+      </footer>
     </div>
   );
 };

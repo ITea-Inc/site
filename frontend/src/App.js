@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Slide1 from './Components/Slide1';
 import Slide2 from './Components/Slide2';
@@ -7,14 +7,10 @@ import Slide4 from './Components/Slide4';
 
 function App() {
   const [activeSection, setActiveSection] = useState('section-0');
-  
-  const bgRef1 = useRef(null);
-  const bgRef2 = useRef(null);
-  const bgRef3 = useRef(null);
 
   const slides = [
-    { id: 'section-0', Component: Slide1, name: 'Главная' },
-    { id: 'section-1', Component: Slide2, name: 'О нас' },
+    { id: 'section-0', Component: Slide1, name: 'Подача' },
+    { id: 'section-1', Component: Slide2, name: 'Кейсы' },
     { id: 'section-2', Component: Slide3, name: 'Процесс' },
     { id: 'section-3', Component: Slide4, name: 'Контакты' },
   ];
@@ -24,13 +20,6 @@ function App() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-  };
-
-  const handleScroll = (e) => {
-    const y = e.target.scrollTop;
-    if (bgRef1.current) bgRef1.current.style.transform = `translateY(${y * -0.15}px)`;
-    if (bgRef2.current) bgRef2.current.style.transform = `translateY(${y * 0.2}px)`;
-    if (bgRef3.current) bgRef3.current.style.transform = `translateY(${y * -0.25}px)`;
   };
 
   useEffect(() => {
@@ -58,20 +47,12 @@ function App() {
   }, []);
 
   return (
-    <div className="app-container" onScroll={handleScroll}>
-      <div className="animated-bg">
-        <div ref={bgRef1} className="shape-parallax"><div className="shape shape-1"></div></div>
-        <div ref={bgRef2} className="shape-parallax"><div className="shape shape-2"></div></div>
-        <div ref={bgRef3} className="shape-parallax"><div className="shape shape-3"></div></div>
-      </div>
-
+    <div className="app-container">
       <header className="header">
-        <div className="logo">
-          <img src="/images/itea.png" alt="Logo" />
-        </div>
+        <button className="logo" onClick={() => scrollToSection('section-0')}>ITea</button>
         
         <nav className="header-nav">
-          {slides.map((slide) => (
+          {slides.slice(0, 3).map((slide) => (
             <button
               key={slide.id}
               className={`nav-link ${activeSection === slide.id ? 'active' : ''}`}
@@ -81,6 +62,10 @@ function App() {
             </button>
           ))}
         </nav>
+
+        <button className="header-cta" onClick={() => scrollToSection('section-3')}>
+          Обсудить проект
+        </button>
       </header>
 
       <main>
