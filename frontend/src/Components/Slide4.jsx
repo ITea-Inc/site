@@ -60,7 +60,7 @@ const Slide4 = () => {
         </section>
 
         <div className="contact-art" aria-hidden="true">
-          <img src="/images/13.jpg" alt="Contact Art" style={{ width: '100%', height: 'auto', maxWidth: '500px', objectFit: 'contain', display: 'block', margin: '0 auto' }} />
+          <img src="/images/13.png" alt="Contact Art" style={{ width: '100%', height: 'auto', maxWidth: '500px', objectFit: 'contain', display: 'block', margin: '0 auto' }} />
         </div>
 
         <aside className="contact-right">

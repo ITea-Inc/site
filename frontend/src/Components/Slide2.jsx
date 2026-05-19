@@ -6,26 +6,26 @@ const Slide2 = () => {
       id: 1,
       title: 'Завод оборудования',
       metric: 'Рост заявок: ×2,7',
-      image: '/images/6.jpg'
+      image: '/images/6.png'
     },
     {
       id: 2,
       title: 'Платформа для бизнеса',
       metric: 'Рост конверсии: +63%',
-      image: '/images/7.jpg'
+      image: '/images/7.png'
     },
     {
       id: 3,
       title: 'Юридическая компания',
       metric: 'Рост заявок: +48%',
-      image: '/images/8.jpg'
+      image: '/images/8.png'
     }
   ];
 
   return (
     <div className="cases-section fade-in-section is-visible">
       <div className="cases-art" aria-hidden="true">
-        <img src="/images/5.jpg" alt="Cases Art" style={{ width: '100%', height: 'auto', maxWidth: '600px', objectFit: 'contain', display: 'block', margin: '0 auto' }} />
+        <img src="/images/5.png" alt="Cases Art" style={{ width: '100%', height: 'auto', maxWidth: '600px', objectFit: 'contain', display: 'block', margin: '0 auto' }} />
       </div>
 
       <div className="cases-content">

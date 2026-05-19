@@ -14,7 +14,6 @@
   --header-height: 72px;
   --container: min(1800px, calc(100vw - 96px));
 }
-
 * {
   box-sizing: border-box;
 }
@@ -246,13 +245,13 @@ main {
   justify-content: center;
 }
 
-.hero-art img,
+/* .hero-art img,
 .cases-art img,
 .contact-art img {
   border-radius: 28px;
   border: 1px solid rgba(0, 0, 0, 0.03);
   box-shadow: 0 20px 48px rgba(45, 39, 31, 0.06);
-}
+} */
 
 .torus,
 .arch,
@@ -378,7 +377,7 @@ main {
   height: 130px;
   width: auto;
   object-fit: contain;
-  mix-blend-mode: multiply;
+  /* mix-blend-mode: multiply; -- uncomment if rolling back to JPEG */
 }
 
 .cube {
@@ -527,7 +526,7 @@ main {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  mix-blend-mode: multiply;
+  /* mix-blend-mode: multiply; -- uncomment if rolling back to JPEG */
 }
 
 .cube-pair::before,

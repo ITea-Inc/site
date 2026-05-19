@@ -10,9 +10,9 @@ const Slide1 = () => {
   };
 
   const pillars = [
-    { title: 'Структура', copy: 'Понятно и убедительно.', image: '/images/2.jpg', alt: 'Структура' },
-    { title: 'Фокус', copy: 'На действиях.', image: '/images/3.jpg', alt: 'Фокус' },
-    { title: 'Результат', copy: 'Заявки и рост.', image: '/images/4.jpg', alt: 'Результат' },
+    { title: 'Структура', copy: 'Понятно и убедительно.', image: '/images/2.png', alt: 'Структура' },
+    { title: 'Фокус', copy: 'На действиях.', image: '/images/3.png', alt: 'Фокус' },
+    { title: 'Результат', copy: 'Заявки и рост.', image: '/images/4.png', alt: 'Результат' },
   ];
 
   return (
@@ -36,7 +36,7 @@ const Slide1 = () => {
         </div>
 
         <div className="hero-art" aria-hidden="true">
-          <img src="/images/1.jpg" alt="Hero Art" style={{ width: '100%', height: 'auto', maxWidth: '800px', objectFit: 'contain' }} />
+          <img src="/images/1.png" alt="Hero Art" style={{ width: '100%', height: 'auto', maxWidth: '800px', objectFit: 'contain' }} />
         </div>
       </section>
 

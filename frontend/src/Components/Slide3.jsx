@@ -2,10 +2,10 @@ import React from 'react';
 
 const Slide3 = () => {
   const processSteps = [
-    { title: 'Понимаем задачу', image: '/images/9.jpg' },
-    { title: 'Проектируем решение', image: '/images/10.jpg' },
-    { title: 'Делаем сайт', image: '/images/11.jpg' },
-    { title: 'Запускаем и улучшаем', image: '/images/12.jpg' }
+    { title: 'Понимаем задачу', image: '/images/9.png' },
+    { title: 'Проектируем решение', image: '/images/10.png' },
+    { title: 'Делаем сайт', image: '/images/11.png' },
+    { title: 'Запускаем и улучшаем', image: '/images/12.png' }
   ];
 
   return (
