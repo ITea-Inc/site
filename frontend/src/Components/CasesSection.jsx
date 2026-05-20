@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Slide2 = () => {
+const CasesSection = () => {
   const scrollToContact = () => {
     document.getElementById('contact-anchor')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -61,4 +61,4 @@ const Slide2 = () => {
   );
 };
 
-export default Slide2;
+export default CasesSection;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Slide1 from './Components/Slide1';
-import Slide2 from './Components/Slide2';
-import Slide4 from './Components/Slide4';
+import HeroSection from './Components/HeroSection';
+import CasesSection from './Components/CasesSection';
+import ProcessContactSection from './Components/ProcessContactSection';
 
 function App() {
   const [activeSection, setActiveSection] = useState('section-0');
@@ -67,15 +67,15 @@ function App() {
 
       <main className="page-flow">
         <section id="section-0" className="section">
-          <Slide1 />
+          <HeroSection />
         </section>
 
         <section id="section-1" className="section">
-          <Slide2 />
+          <CasesSection />
         </section>
 
         <section id="section-2" className="section">
-          <Slide4 />
+          <ProcessContactSection />
         </section>
       </main>
     </div>

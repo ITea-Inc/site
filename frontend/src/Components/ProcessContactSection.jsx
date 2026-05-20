@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Slide4 = () => {
+const ProcessContactSection = () => {
   const processSteps = [
     { title: 'Разбираем бизнес, аудиторию и цель сайта', image: '/images/9.png' },
     { title: 'Собираем структуру и сценарии страниц', image: '/images/10.png' },
@@ -106,4 +106,4 @@ const Slide4 = () => {
   );
 };
 
-export default Slide4;
+export default ProcessContactSection;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Slide1 = () => {
+const HeroSection = () => {
   const scrollToCases = () => {
     document.getElementById('section-1')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -53,4 +53,4 @@ const Slide1 = () => {
   );
 };
 
-export default Slide1;
+export default HeroSection;
