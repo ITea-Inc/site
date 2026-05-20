@@ -2,17 +2,15 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Slide1 from './Components/Slide1';
 import Slide2 from './Components/Slide2';
-import Slide3 from './Components/Slide3';
 import Slide4 from './Components/Slide4';
 
 function App() {
   const [activeSection, setActiveSection] = useState('section-0');
 
-  const slides = [
-    { id: 'section-0', Component: Slide1, name: 'Подача' },
-    { id: 'section-1', Component: Slide2, name: 'Кейсы' },
-    { id: 'section-2', Component: Slide3, name: 'Процесс' },
-    { id: 'section-3', Component: Slide4, name: 'Контакты' },
+  const navItems = [
+    { id: 'section-0', name: 'Подача' },
+    { id: 'section-1', name: 'Кейсы' },
+    { id: 'section-2', name: 'Процесс' },
   ];
 
   const scrollToSection = (id) => {
@@ -23,11 +21,10 @@ function App() {
   };
 
   useEffect(() => {
-    const container = document.querySelector('.app-container');
     const observerOptions = {
-      root: container,
-      rootMargin: '0px',
-      threshold: 0.5,
+      root: null,
+      rootMargin: `-${getComputedStyle(document.documentElement).getPropertyValue('--header-height').trim()} 0px -45% 0px`,
+      threshold: 0.2,
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -52,28 +49,34 @@ function App() {
         <button className="logo" onClick={() => scrollToSection('section-0')}>ITea</button>
         
         <nav className="header-nav">
-          {slides.slice(0, 3).map((slide) => (
+          {navItems.map((item) => (
             <button
-              key={slide.id}
-              className={`nav-link ${activeSection === slide.id ? 'active' : ''}`}
-              onClick={() => scrollToSection(slide.id)}
+              key={item.id}
+              className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
+              onClick={() => scrollToSection(item.id)}
             >
-              {slide.name}
+              {item.name}
             </button>
           ))}
         </nav>
 
-        <button className="header-cta" onClick={() => scrollToSection('section-3')}>
+        <button className="header-cta" onClick={() => scrollToSection('contact-anchor')}>
           Обсудить проект
         </button>
       </header>
 
-      <main>
-        {slides.map((slide) => (
-          <div id={slide.id} key={slide.id} className="section">
-            <slide.Component />
-          </div>
-        ))}
+      <main className="page-flow">
+        <section id="section-0" className="section">
+          <Slide1 />
+        </section>
+
+        <section id="section-1" className="section">
+          <Slide2 />
+        </section>
+
+        <section id="section-2" className="section">
+          <Slide4 />
+        </section>
       </main>
     </div>
   );

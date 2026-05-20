@@ -6,13 +6,13 @@ const Slide1 = () => {
   };
 
   const scrollToContact = () => {
-    document.getElementById('section-3')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('contact-anchor')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const pillars = [
-    { title: 'Структура', copy: 'Понятно и убедительно.', image: '/images/2.png', alt: 'Структура' },
-    { title: 'Фокус', copy: 'На действиях.', image: '/images/3.png', alt: 'Фокус' },
-    { title: 'Результат', copy: 'Заявки и рост.', image: '/images/4.png', alt: 'Результат' },
+    { title: 'Смысл', copy: 'Сразу понятно, кто вы и чем полезны.', image: '/images/2.png', alt: 'Смысл' },
+    { title: 'Маршрут', copy: 'Посетитель не теряется и движется к решению.', image: '/images/3.png', alt: 'Маршрут' },
+    { title: 'Доверие', copy: 'Аргументы, кейсы и форма стоят на своих местах.', image: '/images/4.png', alt: 'Доверие' },
   ];
 
   return (
@@ -20,23 +20,23 @@ const Slide1 = () => {
       <section className="hero-panel">
         <div className="hero-copy">
           <h1 className="hero-title">
-            Сайты,<br />
-            которые ведут<br />
-            к заявке
+            Делаем сайты,<br />
+            где понятно<br />
+            и хочется оставить заявку
           </h1>
-          <p className="hero-description">Структура. Фокус. Результат.</p>
+          <p className="hero-description">Продумываем подачу, структуру и путь клиента до обращения.</p>
 
           <div className="hero-actions">
-            <button className="primary-button" onClick={scrollToContact}>Обсудить проект</button>
+            <button className="primary-button" onClick={scrollToContact}>Разобрать задачу</button>
             <button className="text-button" onClick={scrollToCases}>
-              Смотреть кейсы
+              Посмотреть примеры
               <span aria-hidden="true">→</span>
             </button>
           </div>
         </div>
 
         <div className="hero-art" aria-hidden="true">
-          <img src="/images/1.png" alt="Hero Art" style={{ width: '100%', height: 'auto', maxWidth: '800px', objectFit: 'contain' }} />
+          <img src="/images/1.png" alt="Hero Art" className="hero-image" />
         </div>
       </section>
 

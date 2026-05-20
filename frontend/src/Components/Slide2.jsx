@@ -1,23 +1,27 @@
 import React from 'react';
 
 const Slide2 = () => {
+  const scrollToContact = () => {
+    document.getElementById('contact-anchor')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const cases = [
     {
       id: 1,
-      title: 'Завод оборудования',
-      metric: 'Рост заявок: ×2,7',
+      title: 'Производство оборудования',
+      metric: 'Показали линейку, преимущества и точки контакта.',
       image: '/images/6.png'
     },
     {
       id: 2,
-      title: 'Платформа для бизнеса',
-      metric: 'Рост конверсии: +63%',
+      title: 'B2B-сервис',
+      metric: 'Собрали сложный продукт в понятную историю.',
       image: '/images/7.png'
     },
     {
       id: 3,
-      title: 'Юридическая компания',
-      metric: 'Рост заявок: +48%',
+      title: 'Экспертная услуга',
+      metric: 'Убрали лишнее и усилили доверие к команде.',
       image: '/images/8.png'
     }
   ];
@@ -25,14 +29,14 @@ const Slide2 = () => {
   return (
     <div className="cases-section fade-in-section is-visible">
       <div className="cases-art" aria-hidden="true">
-        <img src="/images/5.png" alt="Cases Art" style={{ width: '100%', height: 'auto', maxWidth: '600px', objectFit: 'contain', display: 'block', margin: '0 auto' }} />
+        <img src="/images/5.png" alt="Cases Art" className="cases-image" />
       </div>
 
       <div className="cases-content">
         <p className="section-kicker">Кейсы</p>
-        <h2 className="section-title">Сайты, которые приносят заявки</h2>
-        <button className="text-button cases-link">
-          Смотреть все кейсы
+        <h2 className="section-title">Задачи, где сайт должен объяснять и продавать</h2>
+        <button className="text-button cases-link" onClick={scrollToContact}>
+          Обсудить похожую задачу
           <span aria-hidden="true">→</span>
         </button>
 
@@ -51,6 +55,7 @@ const Slide2 = () => {
             </article>
           ))}
         </div>
+
       </div>
     </div>
   );

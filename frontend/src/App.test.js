@@ -11,5 +11,5 @@ beforeAll(() => {
 
 test('renders redesigned hero', () => {
   render(<App />);
-  expect(screen.getByText(/Сайты, которые ведут к заявке/i)).toBeInTheDocument();
+  expect(screen.getByText(/Делаем сайты/i)).toBeInTheDocument();
 });
