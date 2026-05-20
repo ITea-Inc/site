@@ -527,7 +527,7 @@ main {
   border: 1px solid var(--line);
   border-radius: 12px;
   background: #faf8f5;
-  min-height: clamp(230px, 28vh, 280px);
+  min-height: clamp(260px, 32vh, 320px);
   box-sizing: border-box;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -552,7 +552,7 @@ main {
 
 .case-visual-wrapper {
   width: 100%;
-  height: clamp(104px, 14vh, 138px);
+  height: clamp(136px, 18vh, 172px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -566,7 +566,7 @@ main {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  filter: var(--shape-shadow-md);
+  filter: drop-shadow(0 14px 16px rgba(60, 52, 42, 0.15)) drop-shadow(0 4px 7px rgba(60, 52, 42, 0.08));
   /* mix-blend-mode: multiply; -- uncomment if rolling back to JPEG */
 }
 
@@ -642,19 +642,23 @@ main {
 .process-step:not(:last-child)::after {
   content: '';
   position: absolute;
-  top: 58px;
-  right: -36px;
-  width: 116px;
+  top: clamp(43px, 5vw, 56px);
+  left: calc(48px + 28px + clamp(86px, 10vw, 112px) + 24px);
+  right: calc(clamp(34px, 4vw, 62px) * -1 + 14px);
   height: 1px;
   background: var(--line);
 }
 
 .process-step:not(:last-child)::before {
-  content: '→';
+  content: '';
   position: absolute;
-  top: 46px;
-  right: -48px;
-  color: #a29b91;
+  top: calc(clamp(43px, 5vw, 56px) - 4px);
+  right: calc(clamp(34px, 4vw, 62px) * -1 + 14px);
+  width: 8px;
+  height: 8px;
+  border-top: 1.5px solid #a29b91;
+  border-right: 1.5px solid #a29b91;
+  transform: rotate(45deg);
 }
 
 .step-number {
@@ -672,9 +676,7 @@ main {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: #e8e5dc;
   overflow: hidden;
-  box-shadow: 0 18px 28px rgba(60, 52, 42, 0.12), 0 4px 9px rgba(60, 52, 42, 0.08);
 }
 
 .step-icon-img {
