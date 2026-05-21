@@ -1,5 +1,4 @@
 import React from 'react';
-import ShowcaseSection from './ShowcaseSection';
 
 const ProcessContactSection = () => {
   const processSteps = [
@@ -53,8 +52,6 @@ const ProcessContactSection = () => {
           ))}
         </div>
       </section>
-
-      <ShowcaseSection />
 
       <div id="contact-anchor" className="contact-container">
         <section className="contact-left">
