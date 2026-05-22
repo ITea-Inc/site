@@ -125,7 +125,11 @@ const useShowcaseSnap = (sectionRef, modeClass = '') => {
 
 const LightingShowcase = () => {
   const sectionRef = useRef(null);
-  const cards = ['Подвесы', 'Бра', 'Доставка'];
+  const cards = [
+    { title: 'Подвесы', image: '/images/showcase-generated/luma-pendants.png' },
+    { title: 'Бра', image: '/images/showcase-generated/luma-sconce.png' },
+    { title: 'Доставка', image: '/images/showcase-generated/luma-delivery.png' },
+  ];
 
   useShowcaseSnap(sectionRef);
 
@@ -169,9 +173,9 @@ const LightingShowcase = () => {
 
           <div className="demo-showcase-grid">
             {cards.map((card, index) => (
-              <article className={`demo-tile demo-tile-${index + 1}`} key={card}>
-                <i aria-hidden="true" />
-                <span>{card}</span>
+              <article className={`demo-tile demo-tile-${index + 1}`} key={card.title}>
+                <img src={card.image} alt="" aria-hidden="true" />
+                <span>{card.title}</span>
               </article>
             ))}
           </div>
@@ -190,9 +194,9 @@ const LightingShowcase = () => {
 const FurnaceShowcase = () => {
   const sectionRef = useRef(null);
   const specs = [
-    { title: 'В интерьере', detail: 'Крупный товарный кадр' },
-    { title: 'Параметры', detail: 'Без перегруза и мелкого шума' },
-    { title: 'Быстрый заказ', detail: 'Путь к заявке на виду' },
+    { title: 'В интерьере', detail: 'Крупный товарный кадр', image: '/images/showcase-generated/furnace-interior.png' },
+    { title: 'Параметры', detail: 'Без перегруза и мелкого шума', image: '/images/showcase-generated/furnace-params.png' },
+    { title: 'Быстрый заказ', detail: 'Путь к заявке на виду', image: '/images/showcase-generated/furnace-order.png' },
   ];
 
   useShowcaseSnap(sectionRef, 'showcase-furnace-mode');
@@ -240,7 +244,7 @@ const FurnaceShowcase = () => {
           <div className="furnace-spec-grid">
             {specs.map((spec, index) => (
               <article className={`furnace-spec furnace-spec-${index + 1}`} key={spec.title}>
-                <i aria-hidden="true" />
+                <img src={spec.image} alt="" aria-hidden="true" />
                 <span>
                   <strong>{spec.title}</strong>
                   <small>{spec.detail}</small>
